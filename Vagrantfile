@@ -43,7 +43,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     app.vm.provision :chef_solo do |chef|
         chef.cookbooks_path = "chef/cookbooks"
         chef.roles_path = "chef/roles"
-        chef.data_bags_path = "chef/data_bags"
         chef.add_role "application_server"
       end
   end
@@ -58,7 +57,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     app.vm.provision :chef_solo do |chef|
         chef.cookbooks_path = "chef/cookbooks"
         chef.roles_path = "chef/roles"
-        chef.data_bags_path = "chef/data_bags"
         chef.add_role "application_server"
       end
   end
@@ -72,7 +70,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "chef/cookbooks"
       chef.roles_path = "chef/roles"
-      chef.data_bags_path = "chef/data_bags"
       chef.add_role "load_balancer"
       chef.json = {
         'loadbalancer' => {
