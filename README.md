@@ -5,6 +5,13 @@ This project demonstrates how to setup a simple multi-vm environment in Vagrant 
 
 This requires Vagrant, Chef, and Virtualbox to be installed.
 
+please make sure following Vagrant plugins installed 
+ 1. landrush
+ 2. vagrant-vbguest
+ 3. vagrant-berkshelf
+ 4. vagrant-share"
+ 5. vagrant-chef-zero 
+
 To use this after installing all the prerequisites, just run 'vagrant up'.
 
 
