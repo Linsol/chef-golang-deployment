@@ -14,4 +14,4 @@ please make sure following Vagrant plugins installed
 
 To use this after installing all the prerequisites, just run 'vagrant up'.
 
-
+Once vagrant deployment is completed try to open this into favorite browser http://web1.example.com
