@@ -20,9 +20,9 @@ unless Vagrant.has_plugin?("vagrant-share")
   raise 'vagrant-share plugin is required'
 end
 
-unless Vagrant.has_plugin?("vagrant-chef-zero")
-  raise 'vagrant-chef-zero plugin is required'
-end
+#unless Vagrant.has_plugin?("vagrant-chef-zero")
+#  raise 'vagrant-chef-zero plugin is required'
+#end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Top level domain
@@ -34,6 +34,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
+
+# CI/CD Jenkins servers
+  config.vm.define "jenkin" do |app|
+    app.vm.hostname = "jenkin."+ $tld
+    app.vm.box = "puppetlabs/centos-6.6-64-puppet"
+    app.vm.network :private_network, ip: "192.168.60.200"
+    app.landrush.host 'jenkin.example.com', '192.168.60.200'
+
+    app.vm.provision :chef_solo do |chef|
+        chef.cookbooks_path = "chef/cookbooks"
+        chef.roles_path = "chef/roles"
+        chef.add_role "jenkins"
+      end
+  end
+
+
   # Application server 1.
   config.vm.define "app1" do |app|
     app.vm.hostname = "app1." + $tld
