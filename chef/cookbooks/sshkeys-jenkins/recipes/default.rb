@@ -27,6 +27,13 @@ cookbook_file '/home/vagrant/.ssh/authorized_keys' do
   source 'authorized_keys'
 end
 
+directory '/var/lib/jenkins/.ssh' do
+  owner 'jenkins'
+  group 'jenkins'
+  mode '700'
+  action :create
+end
+
 cookbook_file '/var/lib/jenkins/.ssh/id_rsa' do
   owner 'jenkins'
   group 'jenkins'
@@ -49,6 +56,13 @@ cookbook_file '/var/lib/jenkins/.ssh/authorized_keys' do
   mode '0600'
   action :create
   source 'authorized_keys'
+end
+
+directory '/root/.ssh' do
+  owner 'root'
+  group 'root'
+  mode '700'
+  action :create
 end
 
 cookbook_file '/root/.ssh/id_rsa' do

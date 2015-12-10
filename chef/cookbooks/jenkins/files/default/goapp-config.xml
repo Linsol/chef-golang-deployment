@@ -3,12 +3,8 @@
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties>
-    <hudson.plugins.copyartifact.CopyArtifactPermissionProperty plugin="copyartifact@1.37">
-      <projectNameList/>
-    </hudson.plugins.copyartifact.CopyArtifactPermissionProperty>
-  </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.4">
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -29,7 +25,7 @@
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers>
-    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.9.1">
+    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.14.0">
       <spec></spec>
     </com.cloudbees.jenkins.GitHubPushTrigger>
   </triggers>
@@ -43,27 +39,50 @@ set -o errexit
 set -o pipefail
 export ANSIBLE_HOST_KEY_CHECKING=False
 
-echo &quot; Build Started&quot;
+echo &quot;Build Started&quot;;
 
 /usr/local/go/bin/go build -o app *.go
 
-echo &quot; Build Completed&quot;
+echo &quot;Build Completed&quot;
 
 echo &quot;&quot;
 echo &quot;&quot;
 echo &quot;&quot;
 echo &quot;&quot;
+
 whoami 
-echo &quot;Deployment started&quot;
+echo &quot;Deployment started on 192.168.60.110&quot;
 cd /var/lib/jenkins/jobs/goapp/workspace
 /usr/bin/ansible-playbook -i &quot;root@192.168.60.110,&quot;  playbook.yml
-
 echo &quot;&quot;
 echo &quot;&quot;
 echo &quot;&quot;
 echo &quot;&quot;
-echo &quot;Deployment completed&quot;</command>
+curl http://192.168.60.110:8484/
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Deployment completed on 192.168.60.110&quot; 
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Deployment started on 192.168.60.111&quot;
+cd /var/lib/jenkins/jobs/goapp/workspace
+/usr/bin/ansible-playbook -i &quot;root@192.168.60.111,&quot;  playbook.yml
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+curl http://192.168.60.111:8484/
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;&quot;
+echo &quot;Deployment completed on 192.168.60.111&quot; </command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
   <buildWrappers/>
+</project>

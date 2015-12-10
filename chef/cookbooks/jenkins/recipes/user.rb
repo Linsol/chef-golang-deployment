@@ -46,12 +46,26 @@ end
 jenkins_plugin 'github'
 jenkins_plugin 'workflow-aggregator'
 jenkins_plugin 'git'
+#jenkins_plugin 'golang'
+jenkins_plugin 'build-pipeline-plugin'
+jenkins_plugin 'build-timeout'
+jenkins_plugin 'copyartifact'
+jenkins_plugin 'delivery-pipeline-plugin'
+jenkins_plugin 'envinject'
+jenkins_plugin 'ghprb'
+jenkins_plugin 'jobConfigHistory'
+#jenkins_plugin 'groovy-postbuild'
+#jenkins_plugin 'job-dsl'
+jenkins_plugin 'parameterized-trigger'
+jenkins_plugin 'promoted-builds'
+jenkins_plugin 'timestamper'
 
 
-#service 'jenkins' do
-#  supports status: true, restart: true, reload: true
-#  action  [:enable, :restart]
-#end
+
+service 'jenkins' do
+  supports status: true, restart: true, reload: true
+  action  [:enable, :restart]
+end
 
 
 

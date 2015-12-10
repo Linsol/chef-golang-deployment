@@ -60,6 +60,14 @@ jenkins_plugin 'parameterized-trigger'
 jenkins_plugin 'promoted-builds'
 jenkins_plugin 'timestamper'
 
+cookbook_file '/var/chef/cache/goapp-config.xml' do
+  owner 'root'
+  group 'root'
+  action :create
+  source 'goapp-config.xml'
+  mode '0644'
+end
+
 xml = File.join(Chef::Config[:file_cache_path], 'goapp-config.xml')
 # Create a jenkins job (default action is `:create`)
 jenkins_job 'goapp' do
