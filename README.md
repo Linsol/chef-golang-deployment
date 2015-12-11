@@ -9,9 +9,10 @@ please make sure following Vagrant plugins installed
  1. landrush
  2. vagrant-vbguest
  3. vagrant-berkshelf
- 4. vagrant-share"
- 5. vagrant-chef-zero 
+ 4. vagrant-share
 
 To use this after installing all the prerequisites, just run 'vagrant up'.
 
-Once vagrant deployment is completed try to open this into favorite browser http://web1.example.com
+Once vagrant deployment is completed please hit this url from your desktop machine :  http://web1.example.com
+
+To redeploy application -> http://jenkin.example.com:8080/ 
